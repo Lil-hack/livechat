@@ -1,4 +1,4 @@
-console.log("lox");
+console.log("lox2");
 ! function(e) {
     function t(i) {
         if (n[i]) return n[i].exports;
