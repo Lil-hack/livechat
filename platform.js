@@ -498,7 +498,7 @@ console.log("lox");
             }, w.getEappsClass = function(e) {
                 var t = e.className.split(" ");
                 return 1 === t.length ? e.className : t.length > 1 ? (t.filter(function(e) {
-                    return /elfsight-app-[\S]+/.test(e)
+                    return /elfsight-app-/.test(e)
                 }), t[0]) : void 0
             }, w.getWidgetIdByElement = function(e) {
                 return "div" === e.tagName.toLowerCase() ? w.getEappsClass(e).replace("elfsight-app-", "") : e.getAttribute("data-id")
@@ -573,7 +573,7 @@ console.log("lox");
             }, w.resetWidget = function(e) {
                 var t = function e(t) {
                     var e = document.createElement("div");
-                    return e.className = "elfsight-app-" + t, e
+                    return e.className = "elfsight-app-", e
                 };
                 w.getWidgetsElements().forEach(function(n) {
                     w.getWidgetIdByElement(n) === e && (delete m[e], n.parentNode.replaceChild(t(e), n))
