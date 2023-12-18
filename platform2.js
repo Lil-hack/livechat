@@ -216,7 +216,7 @@ Please provide your email address so we can get in touch with you.
     if (!chatPopup.classList.contains('hidden')) {
 
         let uuid_chat = localStorage.getItem("uuid_chat");
-        if (uuid_chat == null) {
+        if (uuid_chat != null) {
         let response = await fetch(urlServer+'/'+uuid_chat+'/');
         let data =  await response.json();
         console.log(data);
