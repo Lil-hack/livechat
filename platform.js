@@ -163,7 +163,7 @@ Please provide your email address so we can get in touch with you.
   const chatEmailSubmit = document.getElementById('chat-email-submit');
   const chatInputContainer = document.getElementById('chat-input-container');
   const chatEmail = document.getElementById('chat-email-container');
-  const urlServer = 'http://127.0.0.1:5000';
+  const urlServer = 'http://194.87.103.62:8080';
   const urlIP = 'http://ip-api.com/json';
   let nIntervId;
   chatEmailSubmit.addEventListener('click', function() {
