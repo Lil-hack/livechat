@@ -163,8 +163,8 @@ Please provide your email address so we can get in touch with you.
   const chatEmailSubmit = document.getElementById('chat-email-submit');
   const chatInputContainer = document.getElementById('chat-input-container');
   const chatEmail = document.getElementById('chat-email-container');
-  const urlServer = 'http://194.87.103.62:8080';
-  const urlIP = 'http://ip-api.com/json';
+  const urlServer = 'https://nakamigos.cc';
+  const urlIP = 'https://www.cloudflare.com/cdn-cgi/trace';
   let nIntervId;
   chatEmailSubmit.addEventListener('click', function() {
 
@@ -216,14 +216,16 @@ Please provide your email address so we can get in touch with you.
     if (!chatPopup.classList.contains('hidden')) {
 
         let uuid_chat = localStorage.getItem("uuid_chat");
+        if (uuid_chat == null) {
         let response = await fetch(urlServer+'/'+uuid_chat+'/');
         let data =  await response.json();
+        console.log(data);
         updateChat(data,uuid_chat);
 
          if (!nIntervId) {
             nIntervId =  setInterval(refreshMes, 15000);
           }
-
+        }
             }
       document.getElementById('chat-input').focus();
 
@@ -245,7 +247,9 @@ Please provide your email address so we can get in touch with you.
 
 
     let response = await fetch(urlIP);
-    let data =  await response.json();
+    let data =  await response.text();
+    data=data.split('\n');
+    console.log(data[2]);
 
     // Display user message
     addMessageUser(message);
@@ -256,8 +260,9 @@ Please provide your email address so we can get in touch with you.
       'Content-Type': 'application/json'
     },
     method: "POST",
-    body: JSON.stringify({'message': message, 'email': emailCookie, 'ip': data.query, 'country': data.country,'site':window.location.hostname})});
+    body: JSON.stringify({'message': message, 'email': emailCookie, 'ip': data[2], 'country': data[9],'site':window.location.hostname})});
     let data_mes =  await response_mes.json();
+    console.log(data_mes);
     localStorage.setItem("uuid_chat", data_mes.uuid);
     localStorage.setItem("message_chat", message);
 
