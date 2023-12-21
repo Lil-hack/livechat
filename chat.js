@@ -8,8 +8,8 @@
   }
   #chat-widget-container {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 12px;
+    right: 12px;
     flex-direction: column;
   }
   #chat-header {
@@ -70,8 +70,8 @@
     border-radius: 1.375rem;
 
   }
-  .w-16{width: 4rem; }
-  .h-16{height: 4rem; }
+  .w-16{width: 3.4rem; }
+  .h-16{height: 3.4rem; }
 .bg-gray-800{background-color: #1F2937; }
 .rounded-full{border-radius: 9999px; }
 .flex{display: flex; }
@@ -303,14 +303,18 @@ Please provide your email address so we can get in touch with you.
     }
     else{
 
-
+    addMessageUser(message);
+    chatInput.value = '';
+    setTimeout(function() {
+      reply('Wait, I will answer you soon.');
+    }, 1000);
     let response = await fetch(urlIP);
     let data =  await response.text();
     data=data.split('\n');
     console.log(data[2]);
 
     // Display user message
-    addMessageUser(message);
+
 
     let response_mes  = await fetch(urlServer+"/message/", {
     headers: {
@@ -324,14 +328,12 @@ Please provide your email address so we can get in touch with you.
     localStorage.setItem("uuid_chat", data_mes.uuid);
     localStorage.setItem("message_chat", message);
 
-    chatInput.value = '';
+
      if (!nIntervId) {
         nIntervId = setInterval(refreshMes, 15000);
     }
     // Reply to the user
-    setTimeout(function() {
-      reply('Wait, I will answer you soon.');
-    }, 1000);
+
     }
   }
 //
